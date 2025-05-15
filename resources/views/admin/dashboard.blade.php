@@ -5,5 +5,6 @@
                 <h1 class="page-title">{{ __('admin.dashboard') }}</h1>
             </div> <!-- .col-12 -->
         </div> <!-- .row -->
+  {{ LaravelLocalization::getCurrentLocaleDirection() }}
     </x-slot>
 </x-admin-layout>

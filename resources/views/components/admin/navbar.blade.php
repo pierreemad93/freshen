@@ -13,17 +13,18 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-muted my-2" href="./#" data-toggle="modal"
-                data-target=".modal-shortcut">
-                <span class="fe fe-grid fe-16"></span>
-            </a>
+            @if (LaravelLocalization::getCurrentLocale() == 'en')
+                <a class="nav-link text-muted my-2" href="{{ LaravelLocalization::getLocalizedURL('ar') }}">
+                    اللغة العربيه
+                </a>
+            @else
+                <a class="nav-link text-muted my-2" href="{{ LaravelLocalization::getLocalizedURL('en') }}">
+                    English
+                </a>
+            @endif
+
         </li>
-        <li class="nav-item nav-notif">
-            <a class="nav-link text-muted my-2" href="./#" data-toggle="modal" data-target=".modal-notif">
-                <span class="fe fe-bell fe-16"></span>
-                <span class="dot dot-md bg-success"></span>
-            </a>
-        </li>
+
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle text-muted pr-0" href="#" id="navbarDropdownMenuLink"
                 role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
