@@ -69,9 +69,9 @@
                 </ul>
             </li>
             <li class="nav-item w-100">
-                <a class="nav-link" href="widgets.html">
-                    <i class="fe fe-users fe-16"></i>
-                    <span class="ml-3 item-text">{{ __('admin.users') }}</span>
+                <a class="nav-link" href="{{ route('admin.services.index') }}">
+                    <i class="fe fe-layers fe-16"></i>
+                    <span class="ml-3 item-text">{{ __('admin.services') }}</span>
                 </a>
             </li>
         </ul>

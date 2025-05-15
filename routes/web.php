@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\Admin\DashboardController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -14,6 +15,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
 
         Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
+        //Services
+        Route::resource('services', ServiceController::class);
 
         Route::get('users', function () {
             return "users";
