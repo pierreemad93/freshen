@@ -24,6 +24,7 @@ class ServiceController extends Controller
     public function create()
     {
         //
+        return view('admin.services.create');
     }
 
     /**
@@ -32,6 +33,9 @@ class ServiceController extends Controller
     public function store(StoreServiceRequest $request)
     {
         //
+        Service::create($request->validated());
+        notyf()->success(__('admin.service_add_successfully'));
+        return to_route('admin.services.create');
     }
 
     /**

@@ -11,7 +11,7 @@ class StoreServiceRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,6 +23,20 @@ class StoreServiceRequest extends FormRequest
     {
         return [
             //
+            'title' => 'required|string|min:4|max:255',
+            'title_ar' => 'required|string|min:4|max:255',
+            'description' => 'required|string|min:15|max:255',
+            'description_ar' => 'required|string|min:15|max:255',
+
+        ];
+    }
+    public function attributes()
+    {
+        return  [
+            'title' => __('admin.title'),
+            'title_ar' => __('admin.title_ar'),
+            'description' => __('admin.description'),
+            'description_ar' => __('admin.description_ar'),
         ];
     }
 }
