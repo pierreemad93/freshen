@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Service;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreServiceRequest;
+use App\Http\Requests\ServiceRequest;
 use App\Http\Requests\UpdateServiceRequest;
 
 class ServiceController extends Controller
@@ -31,7 +31,7 @@ class ServiceController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreServiceRequest $request)
+    public function store(ServiceRequest $request)
     {
         //
         Service::create($request->validated());
@@ -44,7 +44,9 @@ class ServiceController extends Controller
      */
     public function show(Service $service)
     {
-        //
+        // $service = Service::findOrFail($id);
+
+        return view('admin.services.show', ['service' => $service]);
     }
 
     /**
@@ -53,14 +55,18 @@ class ServiceController extends Controller
     public function edit(Service $service)
     {
         //
+        return view('admin.services.edit', ['service' => $service]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateServiceRequest $request, Service $service)
+    public function update(ServiceRequest $request, Service $service)
     {
         //
+        $service->update($request->validated());
+        notyf()->success(__('admin.service_update_successfully'));
+        return to_route('admin.services.index');
     }
 
     /**
@@ -69,5 +75,8 @@ class ServiceController extends Controller
     public function destroy(Service $service)
     {
         //
+        $service->delete();
+        notyf()->success(__('admin.service_delete_successfully'));
+        return to_route('admin.services.index');
     }
 }

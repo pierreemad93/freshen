@@ -12,14 +12,13 @@
         </div> <!-- .row -->
         <div class="card shadow">
             <div class="card-body">
-                <h5 class="card-title">Simple Table</h5>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
                 <table class="table table-hover">
                     <thead>
                         <tr>
                             <th>#</th>
                             <th>title</th>
                             <th>description</th>
+                            <th>control</th>
 
                         </tr>
                     </thead>
@@ -41,6 +40,17 @@
                                         {{ $service->description_ar }}
                                     @endif
 
+                                </td>
+                                <td class="d-flex">
+                                    <a class="btn btn-info"
+                                        href="{{ route('admin.services.show', $service->id) }}">{{ __('admin.show') }}</a>
+                                    <a class="btn btn-warning"
+                                        href="{{ route('admin.services.edit', $service->id) }}">{{ __('admin.edit') }}</a>
+                                    <form method="POST" action="{{ route('admin.services.destroy', $service->id) }}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form>
                                 </td>
                             </tr>
                         @empty
