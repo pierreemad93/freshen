@@ -12,6 +12,7 @@ class Service extends Model
         'description',
         'title_ar',
         'description_ar',
-        'image' 
+        'image' ,
+        'added_by'
     ];
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Service;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\ServiceRequest;
 use App\Http\Requests\UpdateServiceRequest;
 
@@ -34,7 +35,9 @@ class ServiceController extends Controller
     public function store(ServiceRequest $request)
     {
         //
-        Service::create($request->validated());
+        $data = $request->validated();
+        $data['added_by'] = Auth::user()->name;
+        Service::create($data);
         notyf()->success(__('admin.service_add_successfully'));
         return to_route('admin.services.create');
     }
