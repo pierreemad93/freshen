@@ -8,12 +8,20 @@
         <div class="card shadow mb-4">
 
             <div class="card-body">
-                <form method="POST" action="{{ route('admin.services.store') }}">
+                <form method="POST" action="{{ route('admin.services.store') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group mb-3">
+                                <label>{{ __('admin.image') }}</label>
+                                <input type="file" class="form-control" name="image">
+                                <x-input-error :messages="$errors->get('image')" class="mt-2" />
+
+                            </div>
+                        </div>
                         <div class="col-md-6">
                             <div class="form-group mb-3">
-                                <label>{{ __('admin.title' )}}</label>
+                                <label>{{ __('admin.title') }}</label>
                                 <input type="text" class="form-control" name="title">
                                 <x-input-error :messages="$errors->get('title')" class="mt-2" />
 
@@ -21,7 +29,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group mb-3">
-                                <label>{{ __('admin.title_ar' )}}</label>
+                                <label>{{ __('admin.title_ar') }}</label>
                                 <input type="text" class="form-control" name="title_ar">
                                 <x-input-error :messages="$errors->get('title_ar')" class="mt-2" />
 

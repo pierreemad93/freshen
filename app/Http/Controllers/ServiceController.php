@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Service;
+use App\Trait\UploadFile;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\ServiceRequest;
@@ -10,13 +11,14 @@ use App\Http\Requests\UpdateServiceRequest;
 
 class ServiceController extends Controller
 {
+    use UploadFile;
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
         //
-        $services = Service::paginate(config('paginator.count'));
+        $services = Service::latest()->paginate(config('paginator.count'));
         return view('admin.services.index', ['services' => $services]);
     }
 
@@ -34,8 +36,10 @@ class ServiceController extends Controller
      */
     public function store(ServiceRequest $request)
     {
-        //
+        $image = $request->file('image');
+        $imagePath = $this->uploadImage($image);
         $data = $request->validated();
+        $data['image'] =  $imagePath;
         $data['added_by'] = Auth::user()->name;
         Service::create($data);
         notyf()->success(__('admin.service_add_successfully'));
