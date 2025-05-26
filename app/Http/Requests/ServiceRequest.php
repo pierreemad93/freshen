@@ -27,7 +27,6 @@ class ServiceRequest extends FormRequest
             'title_ar' => 'required|string|min:4|max:255',
             'description' => 'required|string|min:15|max:255',
             'description_ar' => 'required|string|min:15|max:255',
-
         ];
     }
     public function attributes()

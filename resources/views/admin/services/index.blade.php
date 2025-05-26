@@ -41,10 +41,10 @@
                                     @endif
 
                                 </td>
-                                <td class="d-flex">
-                                    <a class="btn btn-info"
+                                <td class="d-flex ">
+                                    <a class="btn btn-info mx-2"
                                         href="{{ route('admin.services.show', $service->id) }}">{{ __('admin.show') }}</a>
-                                    <a class="btn btn-warning"
+                                    <a class="btn btn-warning mx-2"
                                         href="{{ route('admin.services.edit', $service->id) }}">{{ __('admin.edit') }}</a>
                                     <form method="POST" action="{{ route('admin.services.destroy', $service->id) }}">
                                         @csrf
