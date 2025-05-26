@@ -3,14 +3,13 @@
 namespace App\Providers;
 
 use App\Models\Service;
-use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
-class AppServiceProvider extends ServiceProvider
+class CountServiceProvider extends ServiceProvider
 {
     /**
-     * Register any application services.
+     * Register services.
      */
     public function register(): void
     {
@@ -18,12 +17,12 @@ class AppServiceProvider extends ServiceProvider
     }
 
     /**
-     * Bootstrap any application services.
+     * Bootstrap services.
      */
     public function boot(): void
     {
         //
-        Paginator::useBootstrapFive();
-  
+        $service = Service::all()->count();
+        View::share('countService', $service);
     }
 }

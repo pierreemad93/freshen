@@ -72,6 +72,8 @@
                 <a class="nav-link" href="{{ route('admin.services.index') }}">
                     <i class="fe fe-layers fe-16"></i>
                     <span class="ml-3 item-text">{{ __('admin.services') }}</span>
+                    <span
+                        class="badge badge-pill badge-primary __web-inspector-hide-shortcut__">{{ $countService }}</span>
                 </a>
             </li>
         </ul>
