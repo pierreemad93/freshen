@@ -4,11 +4,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\EndUserController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', EndUserController::class)->name('enduser.home');
+Route::get('/services', App\Http\Controllers\EndUser\ServiceController::class)->name('enduser.services');
 
 Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
     Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth'], function () {
