@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::table('services', function (Blueprint $table) {
             //
             $table->string('added_by')->after('image');
+            $table->string('slug')->after('title');
         });
     }
 

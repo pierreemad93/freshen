@@ -12,7 +12,16 @@ class Service extends Model
         'description',
         'title_ar',
         'description_ar',
-        'image' ,
-        'added_by'
+        'image',
+        'added_by',
+        'slug',
     ];
+
+    /**
+     * Get the route key for the model.
+     */
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
+    }
 }

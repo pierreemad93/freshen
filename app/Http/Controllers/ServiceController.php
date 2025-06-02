@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Service;
 use App\Trait\UploadFile;
+use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\ServiceRequest;
 use App\Http\Requests\UpdateServiceRequest;
+use App\Services\StoreService;
 
 class ServiceController extends Controller
 {
@@ -34,14 +36,9 @@ class ServiceController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(ServiceRequest $request)
+    public function store(ServiceRequest $request ,StoreService $service )
     {
-        $image = $request->file('image');
-        $imagePath = $this->uploadImage($image);
-        $data = $request->validated();
-        $data['image'] =  $imagePath;
-        $data['added_by'] = Auth::user()->name;
-        Service::create($data);
+        $service->store($request);
         notyf()->success(__('admin.service_add_successfully'));
         return to_route('admin.services.create');
     }
